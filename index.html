@@ -1,50 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elizabeth Moore</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: Georgia, serif;
-            background: #faf9f7;
-            color: #2c2c2c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 3rem;
-            font-weight: normal;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        p {
-            font-size: 1.1rem;
-            color: #888;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-        a {
-            color: #2c2c2c;
-            text-decoration: none;
-            border-bottom: 1px solid #2c2c2c;
-            padding-bottom: 2px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elizabeth Moore</title>
+  <meta name="description" content="Elizabeth Moore designs, builds, launches, and measures digital marketing that works.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #002FA7;        /* Klein blue, the signature */
+      --blue-deep: #001B66;
+      --paper: #F4F5F9;       /* cool white */
+      --ink: #12142A;
+      --mist: #C9D1F2;
+      --line: rgba(18, 20, 42, 0.14);
+      --serif: "Bodoni Moda", Didot, "Times New Roman", serif;
+      --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(16px, 4vw, 56px);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--mist);
+      outline-offset: 4px;
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 2;
+      color: var(--paper);
+    }
+    .nav .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+    .monogram {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: clamp(16px, 3vw, 36px);
+      font-size: 0.95rem;
+    }
+    .nav ul a {
+      text-decoration: none;
+      opacity: 0.85;
+    }
+    .nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: var(--blue);
+      color: var(--paper);
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero .wrap {
+      width: 100%;
+      padding-top: 140px;
+      padding-bottom: clamp(48px, 8vw, 96px);
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(4.2rem, 17vw, 15rem);
+      line-height: 0.86;
+      letter-spacing: -0.035em;
+      font-variation-settings: "opsz" 96;
+    }
+    .hero h1 span {
+      display: block;
+      overflow: hidden;
+    }
+    .hero h1 span > em {
+      display: block;
+      font-style: normal;
+      animation: rise 1.1s cubic-bezier(.2,.7,.1,1) both;
+    }
+    .hero h1 span:nth-child(2) > em {
+      font-style: italic;
+      padding-left: 0.6em;
+      animation-delay: 0.12s;
+    }
+    @keyframes rise {
+      from { transform: translateY(105%); }
+      to   { transform: translateY(0); }
+    }
+    .hero-foot {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+      margin-top: clamp(32px, 5vw, 64px);
+      padding-top: 24px;
+      border-top: 1px solid rgba(244, 245, 249, 0.35);
+    }
+    .hero-foot p {
+      max-width: 34ch;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      line-height: 1.35;
+    }
+    .hero-foot a {
+      font-size: 0.95rem;
+      text-underline-offset: 5px;
+    }
+
+    /* ---------- Section heads ---------- */
+    section { padding: clamp(80px, 11vw, 160px) 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: clamp(40px, 6vw, 80px);
+    }
+    .section-head h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .section-head p {
+      max-width: 46ch;
+      color: rgba(18, 20, 42, 0.72);
+    }
+
+    /* ---------- Work ---------- */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(32px, 4vw, 56px) clamp(16px, 2.5vw, 32px);
+    }
+    .project { grid-column: span 6; text-decoration: none; display: block; }
+    .project.wide { grid-column: span 7; }
+    .project.narrow { grid-column: span 5; }
+    .project.full { grid-column: 1 / -1; }
+
+    .project-art {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: var(--mist);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .project.full .project-art { aspect-ratio: 21 / 9; }
+    .project-art::after {
+      content: "Image coming soon";
+      position: absolute;
+      left: 16px; bottom: 14px;
+      font-size: 0.8rem;
+      color: var(--blue);
+      opacity: 0.7;
+    }
+    /* Placeholder art: each project gets its own abstract mark */
+    .art-api { background: var(--blue); }
+    .art-api::before {
+      content: "{ }";
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      font-family: var(--serif);
+      font-size: clamp(5rem, 14vw, 12rem);
+      color: var(--mist);
+    }
+    .art-api::after { color: var(--mist); }
+    .art-giving::before {
+      content: "";
+      position: absolute;
+      width: 70%; aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--blue);
+      right: -12%; top: -18%;
+    }
+    .art-social::before {
+      content: "+200%";
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(4rem, 10vw, 8rem);
+      color: var(--blue);
+    }
+    .art-meta { background: var(--ink); }
+    .art-meta::before {
+      content: "";
+      position: absolute;
+      inset: 18% 22%;
+      border: 2px solid var(--mist);
+      border-radius: 999px;
+    }
+    .art-meta::after { color: var(--mist); }
+    .art-calendar {
+      background:
+        repeating-linear-gradient(90deg, transparent 0 calc(14.28% - 1px), rgba(0,47,167,.25) calc(14.28% - 1px) 14.28%),
+        repeating-linear-gradient(0deg, transparent 0 calc(20% - 1px), rgba(0,47,167,.25) calc(20% - 1px) 20%),
+        var(--mist);
+    }
+    .art-calendar::before {
+      content: "";
+      position: absolute;
+      left: 42.84%; top: 40%;
+      width: 14.28%; height: 20%;
+      background: var(--blue);
+    }
+    .art-stack { background: var(--paper); border: 1px solid var(--line); }
+    .art-stack::before {
+      content: "";
+      position: absolute;
+      left: 12%; right: 12%; top: 22%;
+      height: 56%;
+      background:
+        linear-gradient(var(--blue) 0 0) 0 0 / 100% 18% no-repeat,
+        linear-gradient(var(--mist) 0 0) 0 41% / 100% 18% no-repeat,
+        linear-gradient(var(--ink) 0 0) 0 82% / 100% 18% no-repeat;
+    }
+
+    .project h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.6rem, 2.6vw, 2.25rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .project:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+    .project p {
+      max-width: 48ch;
+      color: rgba(18, 20, 42, 0.72);
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      list-style: none;
+    }
+    .tags li {
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    /* ---------- Capabilities ---------- */
+    .capabilities { background: var(--ink); color: var(--paper); }
+    .capabilities .section-head p { color: rgba(244, 245, 249, 0.7); }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(244, 245, 249, 0.25);
+    }
+    .cap {
+      padding: 28px 24px 8px 0;
+    }
+    .cap + .cap {
+      padding-left: 24px;
+      border-left: 1px solid rgba(244, 245, 249, 0.25);
+    }
+    .cap h3 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      line-height: 1;
+      margin-bottom: 16px;
+      color: var(--mist);
+    }
+    .cap p { color: rgba(244, 245, 249, 0.78); font-size: 0.98rem; }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: clamp(32px, 6vw, 96px);
+    }
+    .portrait {
+      aspect-ratio: 4 / 5;
+      background: var(--mist);
+      position: relative;
+    }
+    .portrait::after {
+      content: "Portrait coming soon";
+      position: absolute;
+      left: 16px; bottom: 14px;
+      font-size: 0.8rem;
+      color: var(--blue);
+      opacity: 0.7;
+    }
+    .about-copy h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 32px;
+      max-width: 18ch;
+    }
+    .about-copy p {
+      max-width: 60ch;
+      margin-bottom: 1.1em;
+      font-size: 1.1rem;
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      background: var(--blue);
+      color: var(--paper);
+    }
+    .contact p {
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      max-width: 36ch;
+      margin-bottom: 24px;
+    }
+    .contact a.email {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 7.4vw, 6.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      word-break: break-word;
+      display: inline-block;
+      border-bottom: 2px solid rgba(244, 245, 249, 0.5);
+      padding-bottom: 6px;
+    }
+    .contact a.email:hover { border-bottom-color: var(--paper); }
+    .contact-links {
+      display: flex;
+      gap: 28px;
+      margin-top: 48px;
+      list-style: none;
+    }
+    .contact-links a { text-underline-offset: 5px; }
+
+    footer {
+      background: var(--blue-deep);
+      color: rgba(244, 245, 249, 0.7);
+      font-size: 0.88rem;
+    }
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .section-head,
+      .about-grid { grid-template-columns: 1fr; }
+      .project,
+      .project.wide,
+      .project.narrow { grid-column: 1 / -1; }
+      .project.full .project-art { aspect-ratio: 4 / 3; }
+      .cap-grid { grid-template-columns: 1fr 1fr; }
+      .cap:nth-child(3) { padding-left: 0; border-left: 0; }
+      .cap:nth-child(n+3) { border-top: 1px solid rgba(244, 245, 249, 0.25); }
+      .portrait { max-width: 420px; }
+    }
+    @media (max-width: 560px) {
+      .nav ul { display: none; }
+      .hero-foot { grid-template-columns: 1fr; }
+      .hero h1 span:nth-child(2) > em { padding-left: 0.3em; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .cap, .cap + .cap { padding-left: 0; border-left: 0; }
+      .cap + .cap { border-top: 1px solid rgba(244, 245, 249, 0.25); }
+      footer .wrap { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero h1 span > em { animation: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Elizabeth Moore</h1>
-        <p>Digital Marketing & Web Design</p>
-        <a href="mailto:hello@elizabethvmoore.com">hello@elizabethvmoore.com</a>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="monogram" href="#top" aria-label="Elizabeth Moore, home">EVM</a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" aria-label="Introduction">
+      <div class="wrap">
+        <h1>
+          <span><em>Elizabeth</em></span>
+          <span><em>Moore</em></span>
+        </h1>
+        <div class="hero-foot">
+          <p>Designer turned marketing technologist. I design it, build it, launch it, and prove it worked.</p>
+          <a href="#work">See selected work</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Selected work</h2>
+          <p>Systems, campaigns, and pages I've built for Whatcom Museum, from the API that connects our donor data to the ads that fill our galleries.</p>
+        </div>
+
+        <div class="work-grid">
+
+          <a class="project full" href="#">
+            <div class="project-art art-api" aria-hidden="true"></div>
+            <h3>Connecting the museum's CRM</h3>
+            <p>A custom MonkeyPod API integration that links online memberships and donations to our CRM, so records update on their own instead of by hand.</p>
+            <ul class="tags"><li>API integration</li><li>CRM</li><li>Automation</li></ul>
+          </a>
+
+          <a class="project wide" href="#">
+            <div class="project-art art-giving" aria-hidden="true"></div>
+            <h3>Membership and online giving</h3>
+            <p>A rebuilt membership system and every donation page, including Giving Tuesday, designed to make joining and giving feel effortless.</p>
+            <ul class="tags"><li>UX</li><li>Web design</li><li>Fundraising</li></ul>
+          </a>
+
+          <a class="project narrow" href="#">
+            <div class="project-art art-social" aria-hidden="true"></div>
+            <h3>Growing our social audience</h3>
+            <p>Strategy, content, and design that grew the museum's social following by more than 200%.</p>
+            <ul class="tags"><li>Social media</li><li>Content</li></ul>
+          </a>
+
+          <a class="project narrow" href="#">
+            <div class="project-art art-meta" aria-hidden="true"></div>
+            <h3>Meta campaigns</h3>
+            <p>Paid social for exhibitions, events, and membership, from creative to targeting to reporting.</p>
+            <ul class="tags"><li>Paid social</li><li>Creative</li><li>Analytics</li></ul>
+          </a>
+
+          <a class="project wide" href="#">
+            <div class="project-art art-calendar" aria-hidden="true"></div>
+            <h3>Rebuilding the events calendar</h3>
+            <p>A redesigned calendar that helps visitors find what's on and get to tickets faster.</p>
+            <ul class="tags"><li>Front-end</li><li>UX</li><li>WordPress</li></ul>
+          </a>
+
+          <a class="project full" href="#">
+            <div class="project-art art-stack" aria-hidden="true"></div>
+            <h3>Marketing infrastructure</h3>
+            <p>Migrating our email program to Constant Contact and rebuilding GA4 and Google Tag Manager tracking so we can trust our numbers.</p>
+            <ul class="tags"><li>Email</li><li>GA4</li><li>Tag Manager</li></ul>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities" aria-labelledby="cap-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="cap-title">What I do</h2>
+          <p>Most people design or build or market. I do all three, which means fewer handoffs and work that actually ships.</p>
+        </div>
+        <div class="cap-grid">
+          <div class="cap">
+            <h3>Design</h3>
+            <p>Brand, print, digital, and campaign creative in Illustrator, InDesign, Photoshop, and Premiere Pro.</p>
+          </div>
+          <div class="cap">
+            <h3>Build</h3>
+            <p>Websites and landing pages in HTML, CSS, WordPress, and PHP, plus API integrations between platforms.</p>
+          </div>
+          <div class="cap">
+            <h3>Launch</h3>
+            <p>Email, social, and paid campaigns across Constant Contact, Meta, and Google Ads.</p>
+          </div>
+          <div class="cap">
+            <h3>Measure</h3>
+            <p>GA4 and Tag Manager setup, reporting, and the insights that shape what we do next.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="portrait" aria-hidden="true"></div>
+        <div class="about-copy">
+          <h2>A graphic designer who learned to speak code.</h2>
+          <p>I started in graphic design, spent time living in Paris, and now lead digital marketing at Whatcom Museum in Bellingham, Washington.</p>
+          <p>My job covers everything from the website and email program to social, paid ads, and print. Along the way I fell for the technical side: connecting systems, fixing tracking, and building pages that convert.</p>
+          <p>Today I'm focused on the space where design meets marketing technology, and I'm always up for a good problem.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <p>Have a project, a role, or a question? I'd love to hear about it.</p>
+        <a class="email" href="mailto:hello@elizabethvmoore.com">hello@elizabethvmoore.com</a>
+        <ul class="contact-links">
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="https://github.com/elizabethvmoore">GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Elizabeth Moore</span>
+      <span>Designed and hand-coded by me</span>
+    </div>
+  </footer>
+
 </body>
 </html>
