@@ -239,6 +239,20 @@
       width: 14.28%; height: 20%;
       background: var(--blue);
     }
+    .art-site { background: var(--paper); border: 1px solid var(--line); }
+    .art-site::before {
+      content: "";
+      position: absolute;
+      inset: 14% 10% 0 10%;
+      border: 2px solid var(--blue);
+      border-bottom: 0;
+      background:
+        linear-gradient(var(--blue) 0 0) 0 0 / 100% 12% no-repeat,
+        linear-gradient(var(--mist) 0 0) 8% 26% / 52% 40% no-repeat,
+        linear-gradient(var(--ink) 0 0) 70% 26% / 22% 6% no-repeat,
+        linear-gradient(var(--mist) 0 0) 70% 36% / 22% 4% no-repeat,
+        linear-gradient(var(--mist) 0 0) 70% 44% / 22% 4% no-repeat;
+    }
     .art-stack { background: var(--paper); border: 1px solid var(--line); }
     .art-stack::before {
       content: "";
@@ -443,23 +457,30 @@
       <div class="wrap">
         <div class="section-head">
           <h2>Selected work</h2>
-          <p>Systems, campaigns, and pages I've built for Whatcom Museum, from the API that connects our donor data to the ads that fill our galleries.</p>
+          <p>Systems, campaigns, and pages I've built for Whatcom Museum, from the code that turns a click into a membership to the ads that fill our galleries.</p>
         </div>
 
         <div class="work-grid">
 
           <a class="project full" href="#">
             <div class="project-art art-api" aria-hidden="true"></div>
-            <h3>Connecting the museum's CRM</h3>
-            <p>A custom MonkeyPod API integration that links online memberships and donations to our CRM, so records update on their own instead of by hand.</p>
-            <ul class="tags"><li>API integration</li><li>CRM</li><li>Automation</li></ul>
+            <h3>The membership and giving engine</h3>
+            <p>As sole developer, I built the museum's online membership and donation system from scratch, connecting WordPress, Stripe, and the MonkeyPod CRM. Twelve membership levels, a hardened PHP proxy to the MonkeyPod API, and payments that book themselves into the CRM and reconcile with accounting to the penny.</p>
+            <ul class="tags"><li>API integration</li><li>Stripe</li><li>PHP</li><li>JavaScript</li><li>CRM</li></ul>
           </a>
 
           <a class="project wide" href="#">
-            <div class="project-art art-giving" aria-hidden="true"></div>
-            <h3>Membership and online giving</h3>
-            <p>A rebuilt membership system and every donation page, including Giving Tuesday, designed to make joining and giving feel effortless.</p>
-            <ul class="tags"><li>UX</li><li>Web design</li><li>Fundraising</li></ul>
+            <div class="project-art art-site" aria-hidden="true"></div>
+            <h3>Rebuilding whatcommuseum.org</h3>
+            <p>A page-by-page rebuild into one cohesive, museum-level site: a new exhibition system that sorts itself by date, a header and mega menu rebuilt from scratch, and redesigned press and blog templates.</p>
+            <ul class="tags"><li>WordPress</li><li>Front-end</li><li>UX</li></ul>
+          </a>
+
+          <a class="project narrow" href="#">
+            <div class="project-art art-calendar" aria-hidden="true"></div>
+            <h3>One calendar for everything</h3>
+            <p>Merged the museum's events into a single filterable calendar with photo view, series pages, and a shared intake so colleagues can submit events.</p>
+            <ul class="tags"><li>UX</li><li>Information design</li></ul>
           </a>
 
           <a class="project narrow" href="#">
@@ -469,25 +490,18 @@
             <ul class="tags"><li>Social media</li><li>Content</li></ul>
           </a>
 
-          <a class="project narrow" href="#">
+          <a class="project wide" href="#">
             <div class="project-art art-meta" aria-hidden="true"></div>
             <h3>Meta campaigns</h3>
             <p>Paid social for exhibitions, events, and membership, from creative to targeting to reporting.</p>
             <ul class="tags"><li>Paid social</li><li>Creative</li><li>Analytics</li></ul>
           </a>
 
-          <a class="project wide" href="#">
-            <div class="project-art art-calendar" aria-hidden="true"></div>
-            <h3>Rebuilding the events calendar</h3>
-            <p>A redesigned calendar that helps visitors find what's on and get to tickets faster.</p>
-            <ul class="tags"><li>Front-end</li><li>UX</li><li>WordPress</li></ul>
-          </a>
-
           <a class="project full" href="#">
             <div class="project-art art-stack" aria-hidden="true"></div>
-            <h3>Marketing infrastructure</h3>
-            <p>Migrating our email program to Constant Contact and rebuilding GA4 and Google Tag Manager tracking so we can trust our numbers.</p>
-            <ul class="tags"><li>Email</li><li>GA4</li><li>Tag Manager</li></ul>
+            <h3>Email, automation, and tracking</h3>
+            <p>Moved the museum's email program from Constant Contact into MonkeyPod, then automated it: tailored donation receipts, a new-member welcome, and a renewal reminder series. Alongside it, an audit of GA4, Tag Manager, Google Ads, and the Meta pixel so the numbers can be trusted.</p>
+            <ul class="tags"><li>Email migration</li><li>Automation</li><li>GA4</li><li>Tag Manager</li></ul>
           </a>
 
         </div>
@@ -507,11 +521,11 @@
           </div>
           <div class="cap">
             <h3>Build</h3>
-            <p>Websites and landing pages in HTML, CSS, WordPress, and PHP, plus API integrations between platforms.</p>
+            <p>Websites, checkout flows, and API integrations in HTML, CSS, JavaScript, PHP, and WordPress.</p>
           </div>
           <div class="cap">
             <h3>Launch</h3>
-            <p>Email, social, and paid campaigns across Constant Contact, Meta, and Google Ads.</p>
+            <p>Email, automation, social, and paid campaigns across MonkeyPod, Meta, and Google Ads.</p>
           </div>
           <div class="cap">
             <h3>Measure</h3>
@@ -527,7 +541,7 @@
         <div class="about-copy">
           <h2>A graphic designer who learned to speak code.</h2>
           <p>I started in graphic design, spent time living in Paris, and now lead digital marketing at Whatcom Museum in Bellingham, Washington.</p>
-          <p>My job covers everything from the website and email program to social, paid ads, and print. Along the way I fell for the technical side: connecting systems, fixing tracking, and building pages that convert.</p>
+          <p>My job covers everything from social, email, paid ads, and print to the website itself, where I'm the solo developer. Along the way I fell hard for the technical side: connecting systems, chasing down bugs, and building pages that convert.</p>
           <p>Today I'm focused on the space where design meets marketing technology, and I'm always up for a good problem.</p>
         </div>
       </div>
