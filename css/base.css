@@ -1,0 +1,125 @@
+/* Shared styles for every page: tokens, type, nav, buttons, footer */
+
+:root {
+  --blue: #002FA7;        /* Klein blue, the signature */
+  --blue-deep: #001B66;
+  --paper: #F4F5F9;       /* cool white */
+  --ink: #12142A;
+  --mist: #C9D1F2;
+  --muted: #4A4E68;
+  --line: rgba(18, 20, 42, 0.14);
+  --serif: "Bodoni Moda", Didot, "Times New Roman", serif;
+  --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --gutter: clamp(16px, 4vw, 56px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+h1, h2, h3, .balance { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+a:focus-visible {
+  outline: 3px solid var(--mist);
+  outline-offset: 4px;
+}
+
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Bodoni below hero size: lower optical size = sturdier hairlines */
+.serif-text {
+  font-family: var(--serif);
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 18;
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 2;
+  color: var(--paper);
+}
+.nav .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.monogram {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 18;
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: clamp(16px, 3vw, 36px);
+  font-size: 0.95rem;
+}
+.nav ul a {
+  text-decoration: none;
+  opacity: 0.85;
+}
+.nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 1px solid var(--paper);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-solid { background: var(--paper); color: var(--blue); }
+.btn-solid:hover { background: var(--mist); border-color: var(--mist); }
+.btn-ghost:hover { background: rgba(244, 245, 249, 0.12); }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--blue-deep);
+  color: rgba(244, 245, 249, 0.72);
+  font-size: 0.88rem;
+}
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media (max-width: 560px) {
+  .nav ul { gap: 16px; font-size: 0.9rem; }
+  .nav ul li.hide-sm { display: none; }
+  footer .wrap { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
