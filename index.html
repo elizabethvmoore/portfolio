@@ -37,6 +37,9 @@
 
     a { color: inherit; }
 
+    h1, h2, h3, .pitch, .proof, .contact p { text-wrap: balance; }
+    p { text-wrap: pretty; }
+
     a:focus-visible {
       outline: 3px solid var(--mist);
       outline-offset: 4px;
@@ -72,10 +75,12 @@
     .monogram {
       font-family: var(--serif);
       font-variation-settings: "opsz" 18;
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.75rem;
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1;
       text-decoration: none;
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
     }
     .nav ul {
       list-style: none;
@@ -151,8 +156,8 @@
       letter-spacing: -0.01em;
     }
     .hero-foot .role {
-      margin-top: 14px;
-      font-size: 0.98rem;
+      margin-top: 18px;
+      font-size: 1.05rem;
       color: rgba(244, 245, 249, 0.78);
     }
     .hero-actions {
@@ -181,7 +186,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
       gap: 32px;
-      align-items: end;
+      align-items: last baseline;
       margin-bottom: clamp(40px, 6vw, 80px);
     }
     .work-head h2 {
@@ -213,6 +218,7 @@
       margin-bottom: 24px;
     }
     .project.full .project-art { aspect-ratio: 21 / 9; }
+    .project.narrow .project-art { aspect-ratio: 20 / 21; }
     .project-art::after {
       content: "Screenshot coming soon";
       position: absolute;
@@ -277,12 +283,11 @@
         linear-gradient(var(--mist) 0 0) 75% 100% / 12% 80% no-repeat,
         linear-gradient(var(--blue) 0 0) 100% 100% / 12% 100% no-repeat;
     }
-    .art-stats::after { color: var(--mist); }
+    .art-stats::after { color: var(--mist); top: 14px; bottom: auto; }
 
-    .art-social::before {
-      content: "+200%";
+    .art-figure {
       position: absolute; inset: 0;
-      display: grid; place-items: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: var(--serif);
       font-variation-settings: "opsz" 18;
       font-weight: 600;
@@ -290,6 +295,14 @@
       font-size: clamp(4rem, 10vw, 8.5rem);
       letter-spacing: -0.02em;
       color: var(--blue);
+    }
+    .art-figure .plus {
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.62em;
+      margin-right: 0.06em;
+      transform: translateY(-0.04em);
     }
 
     .art-email { background: var(--paper); border: 1px solid var(--line); }
@@ -326,8 +339,12 @@
       max-width: 60ch;
       color: var(--muted);
     }
-    .project.full .desc,
-    .project.full .proof { max-width: 68ch; }
+    .project.full .project-text {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      gap: 12px clamp(24px, 4vw, 64px);
+    }
+    .project.full .desc { max-width: 62ch; }
     .project .stack {
       margin-top: 14px;
       font-size: 0.88rem;
@@ -445,7 +462,9 @@
       .project,
       .project.wide,
       .project.narrow { grid-column: 1 / -1; }
-      .project.full .project-art { aspect-ratio: 4 / 3; }
+      .project.full .project-art,
+      .project.narrow .project-art { aspect-ratio: 4 / 3; }
+      .project.full .project-text { grid-template-columns: 1fr; gap: 0; }
       .portrait { max-width: 420px; }
     }
     @media (max-width: 560px) {
@@ -469,7 +488,7 @@
 
   <header class="nav">
     <div class="wrap">
-      <a class="monogram" href="#top" aria-label="Elizabeth Moore, home">EVM</a>
+      <a class="monogram" href="#top" aria-label="Elizabeth Moore, home">evm</a>
       <nav aria-label="Main">
         <ul>
           <li><a href="#work">Work</a></li>
@@ -492,7 +511,7 @@
         </h1>
         <div class="hero-foot">
           <div>
-            <p class="pitch">I design it, code it, launch it, and prove it worked.</p>
+            <p class="pitch">I design it, code it, launch it, and prove it&nbsp;worked.</p>
             <p class="role">Digital Marketing Manager and solo web developer at Whatcom Museum</p>
           </div>
           <div class="hero-actions">
@@ -514,24 +533,30 @@
 
           <a class="project full" href="#">
             <div class="project-art art-api" aria-hidden="true"></div>
+            <div class="project-text">
+            <div>
             <h3 class="serif-text">The membership and giving engine</h3>
-            <p class="proof">Built solo: 12 membership levels, one checkout, zero manual data entry.</p>
+            <p class="proof">Built solo: 12 membership levels, one checkout, zero manual data&nbsp;entry.</p>
+            </div>
+            <div>
             <p class="desc">I built the museum's online membership and donation system from scratch, connecting WordPress, Stripe, and the MonkeyPod CRM through a hardened PHP proxy. Every purchase books itself into the CRM and reconciles with accounting to the penny. Along the way I tracked down a silent duplicate-record bug and uncovered an undocumented MonkeyPod trigger that fixed renewals for good.</p>
             <p class="stack">Stripe, PHP, JavaScript, WordPress, MonkeyPod API</p>
+            </div>
+            </div>
           </a>
 
           <a class="project wide" href="#">
             <div class="project-art art-site" aria-hidden="true"></div>
             <h3 class="serif-text">Rebuilding whatcommuseum.org</h3>
-            <p class="proof">450+ pages audited against a year of traffic data, then rebuilt one by one.</p>
+            <p class="proof">450+ pages audited against a year of traffic data, then rebuilt one by&nbsp;one.</p>
             <p class="desc">I started with research: a full content audit, wireframes of nine leading museum homepages, a new five-item navigation, and a UI style guide. Then I shipped it, including an exhibition system that sorts itself by date and a header rebuilt from scratch.</p>
             <p class="stack">UX research, information architecture, WordPress, CSS</p>
           </a>
 
           <a class="project narrow" href="#">
             <div class="project-art art-calendar" aria-hidden="true"></div>
-            <h3 class="serif-text">One calendar for everything</h3>
-            <p class="proof">Scattered event listings, merged into one filterable calendar.</p>
+            <h3 class="serif-text">One calendar for&nbsp;everything</h3>
+            <p class="proof">Scattered event listings, merged into one filterable&nbsp;calendar.</p>
             <p class="desc">Category filters, a photo view, series pages, and a shared intake so colleagues can submit their own events.</p>
             <p class="stack">UX, WordPress, The Events Calendar Pro</p>
           </a>
@@ -539,25 +564,31 @@
           <a class="project narrow" href="#">
             <div class="project-art art-stats" aria-hidden="true"></div>
             <h3 class="serif-text">The marketing stats system</h3>
-            <p class="proof">Five platforms in, one board-ready report out.</p>
+            <p class="proof">Five platforms in, one board-ready report&nbsp;out.</p>
             <p class="desc">A Python script that pulls exports from GA4, Google Ads, Meta, and MonkeyPod into a single workbook, with built-in checks that flag resends, test emails, and spend counted in the wrong month.</p>
             <p class="stack">Python, Excel, GA4, Meta Ads Manager</p>
           </a>
 
           <a class="project wide" href="#">
-            <div class="project-art art-social" aria-hidden="true"></div>
+            <div class="project-art art-social" aria-hidden="true"><span class="art-figure"><span class="plus">+</span>200%</span></div>
             <h3 class="serif-text">Social, organic and paid</h3>
-            <p class="proof">More than 200% audience growth since I took over.</p>
+            <p class="proof">More than 200% audience growth since I took&nbsp;over.</p>
             <p class="desc">Content strategy, design, and Meta campaigns for exhibitions, events, and membership, measured against the museum's other paid media.</p>
             <p class="stack">Meta Ads Manager, Meta Business Suite, Adobe Creative Suite</p>
           </a>
 
           <a class="project full" href="#">
             <div class="project-art art-email" aria-hidden="true"></div>
+            <div class="project-text">
+            <div>
             <h3 class="serif-text">Email, migrated and automated</h3>
-            <p class="proof">Receipts, welcomes, and renewal reminders that send themselves.</p>
+            <p class="proof">Receipts, welcomes, and renewal reminders that send&nbsp;themselves.</p>
+            </div>
+            <div>
             <p class="desc">I moved the museum's email program from Constant Contact into MonkeyPod, so email, members, and donors live in one system. Then I automated it with tailored donation receipts, a new-member welcome, and a renewal reminder series.</p>
             <p class="stack">MonkeyPod, email automation, list migration</p>
+            </div>
+            </div>
           </a>
 
         </div>
@@ -568,7 +599,7 @@
       <div class="wrap about-grid">
         <div class="portrait" aria-hidden="true"></div>
         <div class="about-copy">
-          <h2 class="serif-text">Equal parts designer, developer, and marketer.</h2>
+          <h2 class="serif-text">Equal parts designer, developer, and&nbsp;marketer.</h2>
           <p>I started as a graphic designer, spent time living in Paris, and now lead digital marketing at Whatcom Museum in Bellingham, Washington.</p>
           <p>I run social, email, ads, and print, and I'm the solo developer behind the museum's website and payment systems. That combination means fewer handoffs: I can take an idea from sketch to code to campaign to report.</p>
           <p>Next, I'm looking to bring that range to a team working where design meets marketing technology.</p>
@@ -588,7 +619,7 @@
 
     <section id="contact" class="contact">
       <div class="wrap">
-        <p>Have a project, a role, or a question? I'd love to hear about it.</p>
+        <p>Have a project, a role, or a question? I'd love to hear about&nbsp;it.</p>
         <a class="email" href="mailto:hello@elizabethvmoore.com">hello@elizabethvmoore.com</a>
         <ul class="contact-links">
           <!-- TODO: add LinkedIn URL and résumé PDF -->
